@@ -1,7 +1,6 @@
-import Link from "next/link";
 import React from "react";
 
-export default function Servicespage() {
+export default function ServiceDetailPage({ params }) {
   const data = [
     {
       _id: 1,
@@ -35,18 +34,14 @@ export default function Servicespage() {
     },
   ];
 
+  const id = params.id;
+  const singleData = data.find(d => d._id == id)
   return (
     <div>
-      <p className="text-3xl">Services page</p>
-      {data.map((d) => {
-        return (
-          <div>
-            <Link href={`/services/${d._id}`}>
-              <p>{d.name}</p>
-            </Link>
-          </div>
-        );
-      })}
+      <h2 className="text-3xl font-bold">Service Details</h2>
+      <p className="font-bold">Service Name: {singleData.name}</p>
+      <p>Service price: {singleData.price}</p>
+      <p>ID: {id}</p>
     </div>
   );
 }
